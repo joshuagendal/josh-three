@@ -1,0 +1,8 @@
+var collectionMeta ={
+	"contacts":{
+		"fields":{
+			"name": "Contact Name"
+		},
+		"collections": [],
+	}
+}
