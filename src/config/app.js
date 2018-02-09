@@ -38,7 +38,7 @@ exports.adminConfig={
     "html":["content"],
     "radio":["radio","radiotf","featured"],
     "checkbox":["checkbox"],
-    "dropdowns":["type", "venueType"],
+    "dropdowns":["type", "venueType", "state"],
     "file":["video"],
     "rgbaColor":['rgba'],
     "hexColor":['color'],
@@ -59,7 +59,8 @@ exports.adminConfig={
       {"key":"radiotf","options":["true","false"]},
       {"key":"featured","options":["true","false"]},
       {"key":"type","options":["Artists", "Brand", "Contractor", "Employee", "Person"]},
-      {"key":"venueType","options":["Amphitheatre", "Theater", "Stadium", "Store", "Boat", "Auditorium", "Resort"]}
+      {"key":"venueType","options":["Amphitheatre", "Theater", "Stadium", "Store", "Boat", "Auditorium", "Resort"]},
+      {"key":"state","options":["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georiga", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]}
   ],
   "optionsForRelation":[
       {
