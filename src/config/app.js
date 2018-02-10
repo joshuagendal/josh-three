@@ -42,7 +42,7 @@ exports.adminConfig={
     "file":["video"],
     "rgbaColor":['rgba'],
     "hexColor":['color'],
-    "relation":['contact', 'venue', 'event'],
+    "relation":['contact', 'venue'],
     "iconmd":['icon'],
     "iconfa":['iconfa'],
     "iconti":['iconti'],

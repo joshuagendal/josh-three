@@ -40,23 +40,47 @@ let createFilenameForVenue = functions.firestore
 		var venueName = venueData.name.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
 		var venueCity = venueData.city.toLowerCase();
 		// add console.log statement
-		console.log
 		return event.data.ref.set({
 			filename: `${venueName}_${venueCity}`
 		}, {merge:true});
 	});
 
 // Create id in this format: yyyymmdd_contact_venue
-// let createEventId = functions.firestore
-// 	.document('events/{eventId}')
-// 	.onWrite(event => {
-// 		var eventData = event.data.data();
-// 		var eventContact = eventData.contact;
-// 		var event
-// 	});
+let createEventId = functions.firestore
+	.document('events/{eventId}')
+	.onWrite(event => {
+		var eventData = event.data.data();
+		var contactId = eventData.contact.id;
+		var eventDate = eventData.eventDate;
+		// console.log('CONTACTS ID: ' + contactId);
+		var contactRef = firestore.collection('contacts').doc(contactId);
+		console.log(contactRef);
+		contactRef.get().then(info => {
+			console.log('DOC DATA: ' + info.data());
+			let contactData = info.data();
+			let contactName = contactData.name.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
+			return event.data.ref.set({
+				id: `${eventDate}_${contactName}_VENUE`
+			}, {merge:true});
+		}).catch(error => {
+			console.log('ERROR! ' + error);
+		});
+	});
+
+
+
+		// var eventContact = eventData.contact.name;
+		// var eventVenue = eventData.venue.name;	
+		// var eventDate = eventData.eventDate;
+		// console.log(`PARAMS: ${event.params}`);
+		// console.log('Contact: ', eventContact, 'extra: ', extra);
+		// console.log(`CONTACTID: ${contactId}`);
+		// console.log(`Creating ID for ${eventVenue} on ${eventDate} and contact is ${eventContact}`);
+	
 
 module.exports = {
 	createContactFields,
 	createCityStateField,
-	createFilenameForVenue
+	createFilenameForVenue,
+	createEventId
 }
