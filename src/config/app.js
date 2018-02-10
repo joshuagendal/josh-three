@@ -32,17 +32,17 @@ exports.adminConfig={
 
   "fieldsTypes":{
     "photo":["photo","image"],
-    "dateTime":["end","start"],
+    "dateTime":["end","start","eventDate"],
     "map":["map","latlng","location"],
     "textarea":["description"],
     "html":["content"],
     "radio":["radio","radiotf","featured"],
     "checkbox":["checkbox"],
-    "dropdowns":["type", "venueType", "state"],
+    "dropdowns":["type", "venueType", "state", "eventType"],
     "file":["video"],
     "rgbaColor":['rgba'],
     "hexColor":['color'],
-    "relation":['contact', 'venue'],
+    "relation":['contact', 'venue', 'event'],
     "iconmd":['icon'],
     "iconfa":['iconfa'],
     "iconti":['iconti'],
@@ -50,6 +50,7 @@ exports.adminConfig={
   "optionsForDateTime":[
     {"key":"end", "dateFormat":"YYYY-MM-DD" ,"timeFormat":true, "saveAs":"x","locale":"es"},
     {"key":"start", "dateFormat":"YYYY-MM-DD" ,"timeFormat":"HH:mm", "saveAs":"YYYY-MM-DD HH:mm"},
+    {"key":"eventDate", "dateFormat":"YYYY-MM-DD", "timeFormat":false, "saveAs": "YYYY-MM-DD"}
   ],
   "optionsForSelect":[
       {"key":"dropdowns","options":["new","processing","rejected","completed"]},
@@ -60,8 +61,9 @@ exports.adminConfig={
       {"key":"featured","options":["true","false"]},
       {"key":"type","options":["Artists", "Brand", "Contractor", "Employee", "Person"]},
       {"key":"venueType","options":["Amphitheatre", "Theater", "Stadium", "Store", "Boat", "Auditorium", "Resort"]},
-      {"key":"state","options":["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georiga", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]}
-  ],
+      {"key":"state","options":["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georiga", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]},
+      {"key":"eventType", "options":["Concert", "Conference", "Corporate Event", "Product Launch"]}
+    ],
   "optionsForRelation":[
       {
         //Firestore - Native
@@ -69,6 +71,18 @@ exports.adminConfig={
         "isValuePath": true,
         "key": "contact",
         "path": "/contacts",
+        "produceRelationKey": true,
+        "relationJoiner": "-",
+        "relationKey": "type_eventid",
+        "value": "name"
+      },
+      {
+        //Firestore - Native
+        // *** only keys you should change are "key" and "path"
+        "display": "name",
+        "isValuePath": true,
+        "key": "venue",
+        "path": "/venues",
         "produceRelationKey": true,
         "relationJoiner": "-",
         "relationKey": "type_eventid",

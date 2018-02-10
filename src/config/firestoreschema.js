@@ -24,10 +24,12 @@ var collectionMeta={
 	"events": {
 		"fields": {
 			"name": "Event Name",
+			"eventType": "Event Type",
 			"filename": "filename",
 			"eventDate": "Date",
 			"identifier": "Unique ID name",
-			"contact": "Events Contact"
+			"contact": "Events Contact",
+			"venue": "Event Venue"
 		},
 		"collections": []
 	},
