@@ -36,6 +36,7 @@ let createEventFilename = functions.firestore
 
 		// **** TODO: ADD artistName as field in events collection and save it
 		// artistID and venueId
+		// *** Test make sure above works
 		contactRef.get().then(snap => {
 			const contactData = snap.data();
 			const contactName = contactData.name.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
@@ -46,7 +47,9 @@ let createEventFilename = functions.firestore
 				return event.data.ref.set({
 					filename: `${dateYYYYMMDD}_${contactName}_${venueName}`,
 					venueName: venueName,
-					contactName: contactName
+					contactName: contactName,
+					contactId: contactId,
+					venueId: venueId
 				}, {merge:true});
 			});
 		}).catch(err => {

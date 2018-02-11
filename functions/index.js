@@ -30,10 +30,41 @@ module.exports = {
 			const songData = event.data.data();
 			const songName = songData.songName;
 			const filename = songName.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
+
+			// const contactId = songData.contact.id;
+
+			// query contact field and grab contact.name
+			
+
 			return event.data.ref.set({
-				filename: filename
+				filename: filename,
 			}, {merge:true});
+		}),
+
+	// add contact name field to contacts collection
+	createContactNameFieldForSong: functions.firestore
+		.document('songs/{songId}')
+		.onWrite(event => {
+			// first get contactId to use 
+			const songData = event.data.data();
+			const contactId = songData.contact.id;
+
+			// declar a reference to the contact document 
+			const contactRef = firestore.collection('contacts').doc(contactId);
+
+			// Promise function to get the contactRef data and set contactName
+			contactRef.get().then(snap => {
+				const contactData = snap.data();
+				const contactName = contactData.name;
+
+				return event.data.ref.set({
+					contactName: contactName
+				}, {merge:true})
+			}).catch(err => {
+				console.log`ERROR: ${err}`;
+			})
 		})
+	
 	
 	
 }

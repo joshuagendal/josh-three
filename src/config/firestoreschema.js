@@ -38,7 +38,8 @@ var collectionMeta={
 		"fields": {
 			"songName": "Song Name",
 			"contact": "Composer",
-			"filename": "filename"
+			"filename": "filename",
+			"contactName": "Composer/Contact Name"
 		},
 		"collections": []
 	},
