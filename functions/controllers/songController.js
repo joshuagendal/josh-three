@@ -6,12 +6,12 @@ var firestore = admin.firestore();
 let createSongFilename = functions.firestore
 	.document('contacts/{contactId}')
 	.onWrite(event => {
-		var newData = event.data.data();
-		var name = newData.name;
+		var songData = event.data.data();
+		var name = songData.songName;
 		var filename = name.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
 		return event.data.ref.set({
 			filename: filename
-		}, {merge:true});
+		}, {merge:true})
 	});
 
 module.exports = {

@@ -30,7 +30,7 @@ var collectionMeta={
 			"contact": "Events Contact",
 			"venue": "Event Venue",
 			"venueName": "Venue Name",
-			"artistName": "Contact Name"
+			"contactName": "Contact Name"
 		},
 		"collections": []
 	},
