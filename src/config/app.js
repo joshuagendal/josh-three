@@ -140,8 +140,15 @@ exports.navigation=[
     "schema": "src/config/firestoreschema.js",
     "icon":"home",
     "tableFields": ["filename"]
+  },
+  {
+    "link": "firestoreadmin",
+    "path": "songs",
+    "name": "Songs",
+    "schema": "src/config/firestoreschema.js",
+    "icon":"home",
+    "tableFields": ["songName"]
   }
-
 
 
 

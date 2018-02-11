@@ -29,7 +29,16 @@ var collectionMeta={
 			"identifier": "Unique ID name",
 			"contact": "Events Contact",
 			"venue": "Event Venue",
-			"venueName": "Venue Name"
+			"venueName": "Venue Name",
+			"artistName": "Contact Name"
+		},
+		"collections": []
+	},
+	"songs": {
+		"fields": {
+			"songName": "Song Name",
+			"contact": "Composer",
+			"filename": "filename"
 		},
 		"collections": []
 	},
