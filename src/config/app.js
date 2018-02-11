@@ -139,7 +139,7 @@ exports.navigation=[
     "name": "Events",
     "schema": "src/config/firestoreschema.js",
     "icon":"home",
-    "tableFields": ["name"]
+    "tableFields": ["filename"]
   }
 
 

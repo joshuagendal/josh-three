@@ -23,14 +23,13 @@ var collectionMeta={
 	},
 	"events": {
 		"fields": {
-			"name": "Event Name",
 			"eventType": "Event Type",
-			"id": "Event ID",
 			"filename": "filename",
 			"eventDate": "Date",
 			"identifier": "Unique ID name",
 			"contact": "Events Contact",
-			"venue": "Event Venue"
+			"venue": "Event Venue",
+			"venueName": "Venue Name"
 		},
 		"collections": []
 	},
