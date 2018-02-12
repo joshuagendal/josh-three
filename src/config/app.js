@@ -42,7 +42,7 @@ exports.adminConfig={
     "file":["video"],
     "rgbaColor":['rgba'],
     "hexColor":['color'],
-    "relation":['contact', 'venue'],
+    "relation":['contact', 'venue', 'composer'],
     "iconmd":['icon'],
     "iconfa":['iconfa'],
     "iconti":['iconti'],
@@ -70,6 +70,17 @@ exports.adminConfig={
         "display": "name",
         "isValuePath": true,
         "key": "contact",
+        "path": "/contacts",
+        "produceRelationKey": true,
+        "relationJoiner": "-",
+        "relationKey": "type_eventid",
+        "value": "name"
+      },
+      {
+        //Firestore - Native
+        "display": "name",
+        "isValuePath": true,
+        "key": "composer",
         "path": "/contacts",
         "produceRelationKey": true,
         "relationJoiner": "-",

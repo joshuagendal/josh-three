@@ -15,6 +15,8 @@ module.exports = {
 	// Create filename field for contact collection documents
 	createContactFilenameField: contactController.createContactFilename,
 
+	// updateEventsWithNewContactInfo: contactController.updateEventsWithNewContactInfo,
+
 	// Create cityState field for venue collection documents
 	createCityStateFieldForVenue: venueController.createCityStateField,
 
@@ -47,24 +49,42 @@ module.exports = {
 		.onWrite(event => {
 			// first get contactId to use 
 			const songData = event.data.data();
-			const contactId = songData.contact.id;
+			const contactId = songData.composer.id;
+			console.log(`CONTACT ID: ${contactId}`);
 
 			// declar a reference to the contact document 
 			const contactRef = firestore.collection('contacts').doc(contactId);
 
-			// Promise function to get the contactRef data and set contactName
-			contactRef.get().then(snap => {
+			// Promise function to get the contactRef data
+			contactRef.get()
+				.then(snap => {
 				const contactData = snap.data();
 				const contactName = contactData.name;
-
 				return event.data.ref.set({
-					contactName: contactName
+					composerName: contactName,
+					composerId: contactId
 				}, {merge:true})
 			}).catch(err => {
-				console.log`ERROR: ${err}`;
-			})
-		})
+				console.log(err);
+			});
+		})	
+	}
+				// return event.data.ref.set({
+				// 	composerName: contactName,
+				// 	composerId: contactId
+				// }, {merge:true})
+		// 	}).catch(err => {
+		// 		console.log`ERROR: ${err}`;
+		// 	})
+		// })
+		// 		return event.data.ref.set({
+		// 			composerName: contactName,
+		// 			composerId: contactId
+		// 		}, {merge:true})
+		// 	}).catch(err => {
+		// 		console.log`ERROR: ${err}`;
+		// 	})
+		// })
 	
 	
 	
-}

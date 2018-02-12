@@ -28,6 +28,7 @@ var collectionMeta={
 			"eventDate": "Date",
 			"identifier": "Unique ID name",
 			"contact": "Events Contact",
+			"contactId": "Contact ID",
 			"venue": "Event Venue",
 			"venueName": "Venue Name",
 			"contactName": "Contact Name"
@@ -37,9 +38,10 @@ var collectionMeta={
 	"songs": {
 		"fields": {
 			"songName": "Song Name",
-			"contact": "Composer",
+			"composer": "Composer", // name this composer as reference
 			"filename": "filename",
-			"contactName": "Composer/Contact Name"
+			"composerName": "Composer/Contact Name",
+			"composerId": "Composer ID"
 		},
 		"collections": []
 	},
