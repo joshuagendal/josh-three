@@ -38,11 +38,11 @@ exports.adminConfig={
     "html":["content"],
     "radio":["radio","radiotf","featured"],
     "checkbox":["checkbox"],
-    "dropdowns":["type", "venueType", "state", "eventType"],
+    "dropdowns":["type", "venueType", "state", "eventType", "set", "segue"],
     "file":["video"],
     "rgbaColor":['rgba'],
     "hexColor":['color'],
-    "relation":['contact', 'venue', 'composer'],
+    "relation":['contact', 'venue', 'composer', 'event', 'song'],
     "iconmd":['icon'],
     "iconfa":['iconfa'],
     "iconti":['iconti'],
@@ -62,7 +62,9 @@ exports.adminConfig={
       {"key":"type","options":["Artists", "Brand", "Contractor", "Employee", "Person"]},
       {"key":"venueType","options":["Amphitheatre", "Theater", "Stadium", "Store", "Boat", "Auditorium", "Resort"]},
       {"key":"state","options":["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georiga", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]},
-      {"key":"eventType", "options":["Concert", "Conference", "Corporate Event", "Product Launch"]}
+      {"key":"eventType", "options":["Concert", "Conference", "Corporate Event", "Product Launch"]},
+      {"key":"set", "options":["Set 1", "Set 2", "Set 3", "Encore", "Encore 1", "Encore 2", "Sound Check", "Other"]},
+      {"key":"segue", "options":[" ", ">"]}
     ],
   "optionsForRelation":[
       {
@@ -94,6 +96,30 @@ exports.adminConfig={
         "isValuePath": true,
         "key": "venue",
         "path": "/venues",
+        "produceRelationKey": true,
+        "relationJoiner": "-",
+        "relationKey": "type_eventid",
+        "value": "name"
+      },
+      {
+        //Firestore - Native
+        // *** only keys you should change are "key" and "path"
+        "display": "filename",
+        "isValuePath": true,
+        "key": "event",
+        "path": "/events",
+        "produceRelationKey": true,
+        "relationJoiner": "-",
+        "relationKey": "type_eventid",
+        "value": "name"
+      },
+      {
+        //Firestore - Native
+        // *** only keys you should change are "key" and "path"
+        "display": "songName",
+        "isValuePath": true,
+        "key": "song",
+        "path": "/songs",
         "produceRelationKey": true,
         "relationJoiner": "-",
         "relationKey": "type_eventid",
@@ -159,7 +185,16 @@ exports.navigation=[
     "schema": "src/config/firestoreschema.js",
     "icon":"home",
     "tableFields": ["songName"]
+  },
+  {
+    "link": "firestoreadmin",
+    "path": "tracks",
+    "name": "Tracks",
+    "schema": "src/config/firestoreschema.js",
+    "icon":"home",
+    "tableFields": ["notes"]
   }
+
 
 
 

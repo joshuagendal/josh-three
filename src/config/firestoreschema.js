@@ -45,6 +45,21 @@ var collectionMeta={
 		},
 		"collections": []
 	},
+	"tracks": {
+		"fields": {
+			"event": "Event Filename",
+			"song": "Song Name",
+			"orderNum": 1,
+			"set": "Set Number",
+			"notes": "Track note",
+			"timecodeInHours": 2,
+			"timecodeInMinutes": 2,
+			"timecodeInSeconds": 2,
+			"segue": " ",
+			"eventFilename": "Event Filename function"
+		},
+		"collections": []
+	},
 }
 
 module.exports = collectionMeta;

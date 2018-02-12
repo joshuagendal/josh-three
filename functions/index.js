@@ -26,6 +26,43 @@ module.exports = {
 	//Create filename field for event collection documents
 	createFilenameFieldForEvent: eventController.createEventFilename,
 
+	trackFilename: functions.firestore
+	.document('tracks/{trackId}')
+	// We use 'e' here instead of 'event' as the callback so as to not confuse w/ event collection model
+	.onWrite(e => {
+		// first get contactId to use 
+		const trackData = e.data.data();
+		const eventId = trackData.event.id;
+		const songId = trackData.song.id;
+		const orderNum = trackData.orderNum;
+
+		// declar a reference to the event and song documents w/ respective ID's 
+		const eventRef = firestore.collection('events').doc(eventId);
+		const songRef = firestore.collection('songs').doc(songId);
+
+		// Promise function to get the contactRef data
+		eventRef.get()
+			.then(eventSnap => {
+			const eventData = eventSnap.data();
+			const eventFilename = eventData.filename;
+			return songRef.get().then(songSnap => {
+				const songData = songSnap.data();
+				const songFilename = songData.filename;
+				const songName = songData.songName;
+				return e.data.ref.set({
+					eventFilename: eventFilename,
+					eventId: eventId,
+					songFilename: songFilename,
+					songName: songName,
+					songId: songId
+				}, {merge:true}); 
+			})
+		}).catch(err => {
+			console.log(err);
+		});
+	}),
+
+	
 	createFilenameFieldForSong: functions.firestore
 		.document('songs/{songId}')
 		.onWrite(event => {
@@ -68,6 +105,7 @@ module.exports = {
 				console.log(err);
 			});
 		})	
+
 	}
 				// return event.data.ref.set({
 				// 	composerName: contactName,

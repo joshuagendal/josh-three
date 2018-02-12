@@ -29,8 +29,6 @@ let createContactFilename = functions.firestore
 					});
 					return snap;
 				}).then(songRef.where('contact'))
-				
-				
 				.catch(err => {
 					console.log(`ERROR!: ${err}`);
 				}));

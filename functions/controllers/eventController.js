@@ -35,7 +35,8 @@ let createEventFilename = functions.firestore
 		// promise function to get contact name 
 		contactRef.get().then(snap => {
 			const contactData = snap.data();
-			const contactName = contactData.name.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
+			const contactName = contactData.name;
+			const contactFilename = contactData.filename;
 			// promise function to get venue name
 			return venueRef.get().then(snap => {
 				const venueData = snap.data();
