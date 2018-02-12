@@ -42,7 +42,7 @@ let createEventFilename = functions.firestore
 				const venueData = snap.data();
 				const venueName = venueData.name.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
 				return event.data.ref.set({
-					filename: `${dateYYYYMMDD}_${contactName}_${venueName}`,
+					filename: `${dateYYYYMMDD}_${contactFilename}_${venueName}`,
 					venueName: venueName,
 					contactName: contactName,
 					contactId: contactId,

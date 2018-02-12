@@ -86,25 +86,19 @@ module.exports = {
 		.onWrite(event => {
 			// first get contactId to use 
 			const songData = event.data.data();
-			const contactId = songData.composer.id;
-			console.log(`CONTACT ID: ${contactId}`);
+			const composerId = songData.composer.id;
 
 			// declar a reference to the contact document 
-			const contactRef = firestore.collection('contacts').doc(contactId);
+			const contactRef = firestore.collection('contacts').doc(composerId);
 
 			// Promise function to get the contactRef data
-			contactRef.get()
-				.then(snap => {
-				const contactData = snap.data();
-				const contactName = contactData.name;
+
 				return event.data.ref.set({
 					composerName: contactName,
-					composerId: contactId
+					composerId: composerId
 				}, {merge:true})
-			}).catch(err => {
-				console.log(err);
-			});
-		})	
+			})
+
 
 	}
 				// return event.data.ref.set({
@@ -126,3 +120,7 @@ module.exports = {
 	
 	
 	
+		// contactRef.get()
+		// .then(snap => {
+		// const contactData = snap.data();
+		// const contactName = contactData.name;

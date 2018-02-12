@@ -19,21 +19,43 @@ let createContactFilename = functions.firestore
 		}, {merge:true}).then(
 			// Query all event documents with contactId supplied
 			eventRef.where('contactId', '==', contactId).get()
-				.then(snap => {
+				.then(eventSnap => {
 					// loop through snapshot of the data, document by document
-					snap.forEach(doc => {
+					eventSnap.forEach(eventDoc => {
 						// set contact Name to '...updating' which will trigger event function controller
-						return doc.ref.set({
+						return eventDoc.ref.set({
 							contactName: 'updating...'
 						}, {merge:true})
 					});
-					return snap;
-				}).then(songRef.where('contact'))
-				.catch(err => {
-					console.log(`ERROR!: ${err}`);
+					return eventSnap;
+				// query all song docs w/ songId === composer Id
+				}).catch(err => {
+						console.log(`ERROR!: ${err}`);
 				}));
-		});
-		
+			});
+
+
+
+
+
+			// .then(songRef.where('composerId', '==', contactId).get()
+			// 		.then(songSnap => {
+			// 			songSnap.forEach(songDoc => {
+			// 				return songDoc.ref.set({
+			// 					composerName: 'updating...'
+			// 				});	
+			// 			});
+			// 			return songSnap;	
+			// 		}))
+			// .then(songRef.where('composerId', '==', contactId).get()
+			// .then(songSnap => {
+			// 	songSnap.forEach(songDoc => {
+			// 		return songDoc.ref.set({
+			// 			composerName: 'updating...'
+			// 		});	
+			// 	});
+			// 	return songSnap;	
+			// }))
 
 // let updateEventsWithNewContactInfo = functions.firestore
 // 	.document('contacts/{contactId}')
