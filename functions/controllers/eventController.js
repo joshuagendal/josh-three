@@ -39,14 +39,16 @@ let createEventFilename = functions.firestore
 			const contactFilename = contactData.filename;
 			// promise function to get venue name
 			return venueRef.get().then(snap => {
-				const venueData = snap.data();
+        const venueData = snap.data();
+        const venueCityState = venueData.cityState;
 				const venueName = venueData.name.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
 				return event.data.ref.set({
 					filename: `${dateYYYYMMDD}_${contactFilename}_${venueName}`,
 					venueName: venueName,
 					contactName: contactName,
 					contactId: contactId,
-					venueId: venueId
+          venueId: venueId,
+          venueCityState: venueCityState
 				}, {merge:true});
 			});
 		}).catch(err => {
