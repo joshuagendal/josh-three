@@ -91,13 +91,24 @@ module.exports = {
 			// declar a reference to the contact document 
 			const contactRef = firestore.collection('contacts').doc(composerId);
 
-			// Promise function to get the contactRef data
-
-				return event.data.ref.set({
-					composerName: contactName,
-					composerId: composerId
+      // Promise function to get the contactRef data
+      contactRef.get().then(snap => {
+        const contactData = snap.data();
+        const composerName = contactData.name;
+        return event.data.ref.set({
+					composerName: composerName,
+          composerId: composerId,
 				}, {merge:true})
-			})
+      }).catch(err => {
+        console.log(err);
+      });
+    })
+
+				// return event.data.ref.set({
+				// 	composerName: contactName,
+				// 	composerId: composerId
+				// }, {merge:true})
+			
 
 
 	}
